@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Form from './Form';
 
 function App() {
+  const [formData, setFormData] = useState(null);
+
+  const handleFormSubmit = (data) => {
+    setFormData(data);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Tugas GSLC Form</h1>
+      <Form onFormSubmit={handleFormSubmit} />
+      {formData && (
+        <div className="success-message">
+          <h2>Berhasil masukkan data!</h2>
+          <p>Nama: {formData.name}</p>
+          <p>Email: {formData.email}</p>
+        </div>
+      )}
     </div>
   );
 }
